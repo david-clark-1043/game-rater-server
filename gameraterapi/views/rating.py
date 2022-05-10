@@ -76,9 +76,9 @@ class RatingSerializer(serializers.ModelSerializer):
         model = Rating
         fields = (  
                     'id',
-                    'gamer_id',
+                    'gamer',
                     'rating',
-                    'game_id'
+                    'game'
                 )
         depth = 2
 

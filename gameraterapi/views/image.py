@@ -76,9 +76,9 @@ class ImageSerializer(serializers.ModelSerializer):
         model = Image
         fields = (  
                     'id',
-                    'gamer_id',
+                    'gamer',
                     'url',
-                    'game_id'
+                    'game'
                 )
         depth = 2
 

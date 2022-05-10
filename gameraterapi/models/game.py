@@ -1,5 +1,7 @@
 from django.db import models
 
+from gameraterapi.models.rating import Rating
+
 class Game(models.Model):
     title = models.CharField(max_length=55)
     description = models.CharField(max_length=300)
@@ -13,10 +15,21 @@ class Game(models.Model):
                                     through="GameCategory",
                                     related_name="games")
 
-    # @property
-    # def joined(self):
-    #     return self.__joined
+    @property
+    def average_rating(self):
+        """Average rating calculated attribute for each game"""
+        ratings = Rating.objects.filter(game=self)
 
-    # @joined.setter
-    # def joined(self, value):
-    #     self.__joined = value
+        if(len(ratings) == 0):
+            return "No ratings"
+        else:
+            # Sum all of the ratings for the game
+            total_rating = 0
+            for rating in ratings:
+                total_rating += rating.rating
+
+            # Calculate the average and return it.
+            
+            average = total_rating / len(ratings)
+            return average
+            # If you don't know how to calculate average, Google it.

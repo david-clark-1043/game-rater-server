@@ -47,17 +47,7 @@ class GameView(ViewSet):
         serializer = CreateGameSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save(gamer=gamer)
-        # serializer.data["gamer"] = gamer
-        # game = Game.objects.create(
-        #     title = serializer.data["title"],
-        #     description = serializer.data["description"],
-        #     designer = serializer.data["designer"],
-        #     year_released = serializer.data["year_released"],
-        #     age_rec = serializer.data["age_rec"],
-        #     number_of_players = serializer.data["number_of_players"],
-        #     est_time_minutes = serializer.data["est_time_minutes"],
-        #     gamer = gamer
-        # )
+
         game = Game.objects.get(pk=serializer.data["id"])
         game.categories.add(*request.data["categories"])
         return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -100,7 +90,8 @@ class GameSerializer(serializers.ModelSerializer):
                     'number_of_players',
                     'est_time_minutes',
                     'age_rec',
-                    'categories'
+                    'categories',
+                    'average_rating'
                 )
         depth = 2
 
