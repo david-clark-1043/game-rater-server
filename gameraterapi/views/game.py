@@ -48,9 +48,10 @@ class GameView(ViewSet):
         serializer.is_valid(raise_exception=True)
         serializer.save(gamer=gamer)
 
-        game = Game.objects.get(pk=serializer.data["id"])
+        game = serializer.instance
         game.categories.add(*request.data["categories"])
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
+        game = GameSerializer(game)
+        return Response(game.data, status=status.HTTP_201_CREATED)
 
     def update(self, request, pk):
         """Handle PUT requests for a game
@@ -98,7 +99,7 @@ class GameSerializer(serializers.ModelSerializer):
 class CreateGameSerializer(serializers.ModelSerializer):
     class Meta:
         model = Game
-        fields = [  'id',
+        fields = [
                     'title',
                     'description',
                     'designer',
