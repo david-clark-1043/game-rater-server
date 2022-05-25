@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'corsheaders',
     'gameraterapi',
+    'gameraterreports'
 ]
 
 # THIS IS NEW

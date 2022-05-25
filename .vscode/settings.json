@@ -7,6 +7,7 @@
     "python.linting.enabled": true,
     "cSpell.words": [
         "authtoken",
+        "categorygamecounts",
         "gamerater",
         "gameraterapi",
         "viewsets"
