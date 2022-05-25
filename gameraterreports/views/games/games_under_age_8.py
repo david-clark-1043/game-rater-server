@@ -7,4 +7,42 @@ from gameraterreports.views.helpers import dict_fetch_all
 
 class GamesUnderAge8List(View):
     def get(self, request):
-        return ""
+        with connection.cursor() as db_cursor:
+
+            # TODO: Write a query to get all games along with the gamer first name, last name, and id
+            db_cursor.execute("""
+                SELECT *
+                FROM gameraterapi_game g
+                WHERE g.age_rec < 8
+            """)
+            # Pass the db_cursor to the dict_fetch_all function to turn the fetch_all() response into a dictionary
+            dataset = dict_fetch_all(db_cursor)
+
+            games_under_age_8 = []
+
+            for row in dataset:
+                # TODO: Create a dictionary called game that includes 
+                # the name, description, number_of_players, maker,
+                # game_type_id, and skill_level from the row dictionary
+                game = {
+                    "id": row['id'],
+                    "title": row['title'],
+                    "description": row['description'],
+                    "designer": row['designer'],
+                    "year_released": row['year_released'],
+                    "est_time_minutes": row['est_time_minutes'],
+                    "number_of_players": row['number_of_players'],
+                    "age_rec": row['age_rec'],
+                    "gamer_id": row['gamer_id']
+                }
+                games_under_age_8.append(game)
+        
+        # The template string must match the file name of the html template
+        template = 'games/list_games_under_age_8.html'
+        
+        # The context will be a dictionary that the template can access to show data
+        context = {
+            "games_under_age_8_list": games_under_age_8
+        }
+
+        return render(request, template, context)
