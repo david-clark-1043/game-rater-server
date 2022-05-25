@@ -78,7 +78,6 @@ class GameView(ViewSet):
 class GameSerializer(serializers.ModelSerializer):
     """JSON serializer for games
     """
-    
     class Meta:
         model = Game
         fields = (  
@@ -99,7 +98,8 @@ class GameSerializer(serializers.ModelSerializer):
 class CreateGameSerializer(serializers.ModelSerializer):
     class Meta:
         model = Game
-        fields = [
+        fields = (
+                    'id',
                     'title',
                     'description',
                     'designer',
@@ -107,4 +107,4 @@ class CreateGameSerializer(serializers.ModelSerializer):
                     'number_of_players',
                     'est_time_minutes',
                     'age_rec'
-                    ]
+        )
