@@ -1,5 +1,7 @@
 from django.urls import path
 
+from gameraterreports.views.base import BaseList
+
 from .views import Top5GameList, Bottom5GameList, CategoryGameCountList
 from .views import GamesGreaterThan5PlayersList
 from .views import MostReviewedGameList
@@ -18,4 +20,5 @@ urlpatterns = [
     path('reports/gamesNoPics', GamesNoPicsList.as_view()),
     path('reports/gamerMostGamesAdded', GamerMostGamesAddedList.as_view()),
     path('reports/gamerMostReviews', GamerMostReviewsList.as_view()),
+    path('reports/base', BaseList.as_view()),
 ]

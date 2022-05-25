@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Gamer Rater Reports</title>
+  </head>
+  <body>
+    <h1>Reports</h1>
+    <ol>
+        <li>
+            <a href={{"/reports/top5games"}}>Top 5 Games</a>
+        </li>
+        <li>
+            <a href={{"/reports/bottom5games"}}>Bottom 5 Games</a>
+        </li>
+        <li>
+            <a href={{"/reports/categoryGameCounts"}}>Categories by Game Count</a>
+        </li>
+        <li>
+            <a href={{"/reports/gamesForMoreThan5"}}>Games for More than 5 Players</a>
+        </li>
+        <li>
+            <a href={{"/reports/mostReviewedGame"}}>Most Reviewed Games</a>
+        </li>
+        <li>
+            <a href={{"/reports/gamesUnderAge8"}}>Games for Kids under 8</a>
+        </li>
+        <li>
+            <a href={{"/reports/gamesNoPics"}}>Games without Pictures</a>
+        </li>
+        <li>
+            <a href={{"/reports/gamerMostGamesAdded"}}>Gamers with Most Games Added</a>
+        </li>
+        <li>
+            <a href={{"/reports/gamerMostReviews"}}>Gamers with Most Reviews</a>
+        </li>
+    </ol>
+  </body>
+{% comment %}   
+  [
+      path('reports/top5games', Top5GameList.as_view()),
+      path('reports/bottom5games', Bottom5GameList.as_view()),
+      path('reports/categoryGameCounts', CategoryGameCountList.as_view()),
+      path('reports/gamesForMoreThan5', GamesGreaterThan5PlayersList.as_view()),
+      path('reports/mostReviewedGame', MostReviewedGameList.as_view()),
+      path('reports/gamesUnderAge8', GamesUnderAge8List.as_view()),
+      path('reports/gamesNoPics', GamesNoPicsList.as_view()),
+      path('reports/gamerMostGamesAdded', GamerMostGamesAddedList.as_view()),
+      path('reports/gamerMostReviews', GamerMostReviewsList.as_view()),
+  ] {% endcomment %}
+</html>
