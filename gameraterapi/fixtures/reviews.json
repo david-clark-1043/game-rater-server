@@ -1,0 +1,65 @@
+[
+    {
+        "model": "gameraterapi.review",
+        "pk": 1,
+        "fields": {
+            "game": 1,
+            "gamer": 1,
+            "review": "Good stuff"
+        }
+    },
+    {
+        "model": "gameraterapi.review",
+        "pk": 2,
+        "fields": {
+            "game": 2,
+            "gamer": 2,
+            "review": "Good stuff"
+        }
+    },
+    {
+        "model": "gameraterapi.review",
+        "pk": 3,
+        "fields": {
+            "game": 3,
+            "gamer": 3,
+            "review": "Good stuff"
+        }
+    },
+    {
+        "model": "gameraterapi.review",
+        "pk": 4,
+        "fields": {
+            "game": 4,
+            "gamer": 4,
+            "review": "Good stuff"
+        }
+    },
+    {
+        "model": "gameraterapi.review",
+        "pk": 5,
+        "fields": {
+            "game": 2,
+            "gamer": 1,
+            "review": "Good stuff"
+        }
+    },
+    {
+        "model": "gameraterapi.review",
+        "pk": 6,
+        "fields": {
+            "game": 3,
+            "gamer": 1,
+            "review": "Good stuff"
+        }
+    },
+    {
+        "model": "gameraterapi.review",
+        "pk": 7,
+        "fields": {
+            "game": 1,
+            "gamer": 2,
+            "review": "Good stuff"
+        }
+    }
+]
