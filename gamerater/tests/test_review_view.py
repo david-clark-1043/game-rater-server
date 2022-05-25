@@ -1,25 +1,21 @@
 from rest_framework import status
 from rest_framework.test import APITestCase
 from rest_framework.authtoken.models import Token
-from gameraterapi.models import Game, Gamer
-from django.db.models import Count, Q
-from gameraterapi.models.rating import Rating
+from gameraterapi.models import Gamer
 from gameraterapi.models.review import Review
-from gameraterapi.views.game import CreateGameSerializer, GameSerializer
-from gameraterapi.views import RatingView, RatingSerializer, CreateRatingSerializer
 from gameraterapi.views.review import CreateReviewSerializer
 
 class RatingTests(APITestCase):
 
     # Add any fixtures you want to run to build the test database
     fixtures = ['users', 'tokens', 'gamers', 'categories', 'games', 'images', 'ratings', 'reviews']
-    
+
     def setUp(self):
         # Grab the first Gamer object from the database and add their token to the headers
         self.gamer = Gamer.objects.first()
         token = Token.objects.get(user=self.gamer.user)
         self.client.credentials(HTTP_AUTHORIZATION=f"Token {token.key}")
-    
+
     def test_create_review(self):
         """Create review test"""
         url = "/reviews?game=1"
@@ -34,7 +30,7 @@ class RatingTests(APITestCase):
         response = self.client.post(url, review, format='json')
 
         self.assertEqual(status.HTTP_201_CREATED, response.status_code)
-        
+
         # Get the last review added to the database, it should be the one just created
         new_review = Review.objects.last()
 

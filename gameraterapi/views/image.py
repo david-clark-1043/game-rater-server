@@ -1,6 +1,5 @@
 """View module for handling requests about ratings"""
-from django.http import HttpResponseServerError
-from django.core.exceptions import ValidationError
+
 
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
@@ -22,6 +21,7 @@ class ImageView(ViewSet):
             return Response(serializer.data)
         except Image.DoesNotExist as ex:
             return Response({'message': ex.args[0]}, status=status.HTTP_404_NOT_FOUND)
+
 
     def list(self, request):
         """Handle GET requests to get all images
@@ -63,6 +63,7 @@ class ImageView(ViewSet):
         return Response(None, status=status.HTTP_204_NO_CONTENT)
 
     def destroy(self, request, pk):
+        """DELETE method for images"""
         image = Image.objects.get(pk=pk)
         image.delete()
         return Response(None, status=status.HTTP_204_NO_CONTENT)
@@ -74,7 +75,7 @@ class ImageSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Image
-        fields = (  
+        fields = (
                     'id',
                     'gamer',
                     'url',
@@ -85,6 +86,6 @@ class ImageSerializer(serializers.ModelSerializer):
 class CreateImageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Image
-        fields = (  
+        fields = (
             'url',
         )

@@ -1,11 +1,10 @@
 """View module for handling requests about games"""
-from django.http import HttpResponseServerError
-from django.core.exceptions import ValidationError
+
 
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers, status
-from gameraterapi.models import Game, Gamer, GameCategory
+from gameraterapi.models import Game, Gamer
 
 
 class GameView(ViewSet):
@@ -70,6 +69,7 @@ class GameView(ViewSet):
         return Response(None, status=status.HTTP_204_NO_CONTENT)
 
     def destroy(self, request, pk):
+        """DELETE method for games"""
         game = Game.objects.get(pk=pk)
         game.delete()
         return Response(None, status=status.HTTP_204_NO_CONTENT)
@@ -80,7 +80,7 @@ class GameSerializer(serializers.ModelSerializer):
     """
     class Meta:
         model = Game
-        fields = (  
+        fields = (
                     'id',
                     'title',
                     'description',

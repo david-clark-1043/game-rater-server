@@ -1,6 +1,4 @@
 """View module for handling requests about reviews"""
-from django.http import HttpResponseServerError
-from django.core.exceptions import ValidationError
 
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
@@ -64,6 +62,7 @@ class ReviewView(ViewSet):
         return Response(None, status=status.HTTP_204_NO_CONTENT)
 
     def destroy(self, request, pk):
+        """DELETE method for reviews"""
         review = Review.objects.get(pk=pk)
         review.delete()
         return Response(None, status=status.HTTP_204_NO_CONTENT)
@@ -84,9 +83,7 @@ class ReviewSerializer(serializers.ModelSerializer):
         depth = 2
 
 class CreateReviewSerializer(serializers.ModelSerializer):
-    
-    #game = Game.objects.get(pk=data["game_id"])
-    
+
     class Meta:
         model = Review
         fields = (

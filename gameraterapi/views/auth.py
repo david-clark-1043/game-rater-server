@@ -52,7 +52,7 @@ def register_user(request):
         last_name=request.data['last_name']
     )
 
-    # Now save the extra info in the levelupapi_gamer table
+    # Now save the extra info in the gameraterapi_gamer table
     gamer = Gamer.objects.create(
         bio=request.data['bio'],
         user=new_user

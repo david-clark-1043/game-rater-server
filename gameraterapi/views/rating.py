@@ -1,6 +1,4 @@
 """View module for handling requests about ratings"""
-from django.http import HttpResponseServerError
-from django.core.exceptions import ValidationError
 
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
@@ -63,6 +61,7 @@ class RatingView(ViewSet):
         return Response(None, status=status.HTTP_204_NO_CONTENT)
 
     def destroy(self, request, pk):
+        """DELETE method for server"""
         rating = Rating.objects.get(pk=pk)
         rating.delete()
         return Response(None, status=status.HTTP_204_NO_CONTENT)
@@ -74,7 +73,7 @@ class RatingSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Rating
-        fields = (  
+        fields = (
                     'id',
                     'gamer',
                     'rating',
